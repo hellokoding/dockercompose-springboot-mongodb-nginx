@@ -1,9 +1,11 @@
 package com.hellokoding.springboot;
 
+import com.mongodb.MongoClient;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
@@ -12,6 +14,8 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model) {
+        MongoClient mongoClient = new MongoClient("mongodb");
+        logger.log(Level.INFO, "First database name: " + mongoClient.listDatabaseNames().first());
         return "index";
     }
 }
