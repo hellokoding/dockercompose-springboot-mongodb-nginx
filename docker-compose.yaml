@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   nginx:
    container_name: some-nginx
@@ -9,6 +9,9 @@ services:
    - 443:443
    volumes:
    - ./nginx/conf.d:/etc/nginx/conf.d
+   depends_on:
+   - app
+
   mongodb:
     container_name: some-mongo
     image: mongo:3.6
@@ -32,5 +35,4 @@ services:
       - "8080"
     command: mvn clean spring-boot:run
     depends_on:
-      - nginx
       - mongodb
