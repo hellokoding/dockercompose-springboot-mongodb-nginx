@@ -14,8 +14,10 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model) {
-        MongoClient mongoClient = new MongoClient("mongodb");
-        logger.log(Level.INFO, "First database name: " + mongoClient.listDatabaseNames().first());
+        try(MongoClient mongoClient = new MongoClient("mongodb")){
+            logger.log(Level.INFO, "First database name: " + mongoClient.listDatabaseNames().first());
+        }
+        
         return "index";
     }
 }

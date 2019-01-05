@@ -4,3 +4,6 @@ target
 out
 .DS_Store
 data
+.classpath
+.project
+.settings
